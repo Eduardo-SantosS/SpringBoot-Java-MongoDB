@@ -25,9 +25,16 @@ public class UserService {
         return obj.orElseThrow(() -> new ObjectNotFoundException("Not found id : " + id));
     }
 
-    public User insert(User obj){
-        return userRepository.save(obj);
+    public void insert(User obj){
+        userRepository.save(obj);
     }
+
+    public void delete(String id){
+        findById(id);
+        userRepository.deleteById(id);
+    }
+
+
 
     public User fromDto(UserDto obj){
         return new User(obj.getId(), obj.getName(), obj.getEmail());
