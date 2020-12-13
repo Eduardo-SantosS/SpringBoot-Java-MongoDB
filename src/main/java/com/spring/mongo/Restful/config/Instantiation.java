@@ -3,6 +3,7 @@ package com.spring.mongo.Restful.config;
 import com.spring.mongo.Restful.domain.Post;
 import com.spring.mongo.Restful.domain.User;
 import com.spring.mongo.Restful.dto.AuthorDto;
+import com.spring.mongo.Restful.dto.CommentDto;
 import com.spring.mongo.Restful.repositories.PostRepository;
 import com.spring.mongo.Restful.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,13 @@ public class Instantiation implements CommandLineRunner {
 
         Post p1= new Post(null, Instant.parse("2020-12-23T16:35:40Z"), "Let's go", "Travel to beach", new AuthorDto(u1));
         Post p2= new Post(null, Instant.parse("2020-06-15T18:45:10Z"), "Good Morning", "Going to work", new AuthorDto(u1));
+
+        CommentDto c1 = new CommentDto("Good trip!", Instant.now(), new AuthorDto(u2));
+        CommentDto c2 = new CommentDto("Enjoy!", Instant.now(), new AuthorDto(u3));
+        CommentDto c3 = new CommentDto("Have a good day!", Instant.now(), new AuthorDto(u2));
+        p1.getComments().addAll(Arrays.asList(c1,c2));
+        p2.getComments().add(c3);
+
         postRepository.saveAll(Arrays.asList(p1,p2));
 
         u1.getPosts().addAll(Arrays.asList(p1,p2));
