@@ -1,5 +1,6 @@
 package com.spring.mongo.Restful.resources;
 
+import com.spring.mongo.Restful.domain.Post;
 import com.spring.mongo.Restful.domain.User;
 import com.spring.mongo.Restful.dto.UserDto;
 import com.spring.mongo.Restful.services.UserService;
@@ -52,5 +53,11 @@ public class UserResource {
         user.setId(id);
         userService.update(user);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
