@@ -1,14 +1,13 @@
 package com.spring.mongo.Restful.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.mongo.Restful.dto.AuthorDto;
 import com.spring.mongo.Restful.dto.CommentDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,8 +16,7 @@ public class Post implements Serializable {
 
     @Id
     private String id;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant date;
+    private Date date;
     private String title;
     private String body;
     private AuthorDto author;
@@ -27,7 +25,7 @@ public class Post implements Serializable {
     public Post(){
     }
 
-    public Post(String id, Instant date, String title, String body, AuthorDto author) {
+    public Post(String id, Date date, String title, String body, AuthorDto author) {
         this.id = id;
         this.date = date;
         this.title = title;
@@ -43,11 +41,11 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public Instant getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

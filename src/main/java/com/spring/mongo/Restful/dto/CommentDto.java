@@ -1,21 +1,18 @@
 package com.spring.mongo.Restful.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
 public class CommentDto implements Serializable {
 
     private String text;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant date;
+    private Date date;
     private AuthorDto author;
 
     public CommentDto(){
     }
 
-    public CommentDto(String text, Instant date, AuthorDto author) {
+    public CommentDto(String text, Date date, AuthorDto author) {
         this.text = text;
         this.date = date;
         this.author = author;
@@ -29,11 +26,11 @@ public class CommentDto implements Serializable {
         this.text = text;
     }
 
-    public Instant getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Instant date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
